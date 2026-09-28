@@ -1,11 +1,28 @@
 #include <iostream>
 #include <stdexcept>
 
-int ** makeMtx(size_t m, size_t n);
+int ** makeMtx(size_t m, size_t n)
+{
+  int ** mtxR = new int * [m];
+  for (size_t i = 0; i < m; ++i)
+  {
+    mtxR[i] = new int[n];
+  }
+
+  return mtxR;
+}
 
 int ** transpose(int ** mtx, size_t m, size_t n);
 
 void rmMtx(int ** mtx, size_t m);
+{
+  for (size_t i = 0; i < m; ++i)
+  {
+    delete [] mtx[i];
+  }
+
+  delete [] mtx;
+}
 
 void printMtx(int ** mtx, size_t m, size_t n);
 
@@ -22,6 +39,7 @@ int main()
   }
 
   int ** mtx = nullptr;
+
   mtx = makeMtx(m, n);
 
   for (size_t i = 0; i < m * n; ++i)
@@ -41,6 +59,4 @@ int main()
   std::cout << "\n";
 
   return 0;
-}
- return 0;
 }
